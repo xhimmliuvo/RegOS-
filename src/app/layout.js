@@ -1,4 +1,5 @@
 import './globals.css';
+import { Analytics } from '@vercel/analytics/react';
 import { AuthProvider } from '@/context/AuthContext';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { ToastProvider } from '@/context/ToastContext';
@@ -92,6 +93,7 @@ export default function RootLayout({ children }) {
             `,
                     }}
                 />
+                <Analytics />
             </body>
         </html>
     );
