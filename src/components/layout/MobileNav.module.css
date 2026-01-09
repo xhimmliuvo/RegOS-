@@ -10,21 +10,24 @@
     border-top: 1px solid var(--border-light);
 }
 
-@supports (backdrop-filter: blur(12px)) {
+@supports (backdrop-filter: blur(20px)) {
     .nav {
-        background: rgba(var(--bg-primary-rgb, 255, 255, 255), 0.85);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
     }
 }
 
 [data-theme="dark"] .nav {
     background: var(--bg-primary);
+    border-top-color: rgba(255, 255, 255, 0.08);
 }
 
-@supports (backdrop-filter: blur(12px)) {
+@supports (backdrop-filter: blur(20px)) {
     [data-theme="dark"] .nav {
         background: rgba(15, 13, 26, 0.85);
+        backdrop-filter: saturate(180%) blur(20px);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
     }
 }
 
@@ -43,18 +46,24 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: var(--space-1);
+    gap: 2px;
     padding: var(--space-2) var(--space-3);
     color: var(--text-tertiary);
     text-decoration: none;
-    transition: all var(--transition-fast);
-    border-radius: var(--radius-lg);
-    min-width: 56px;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-radius: var(--radius-xl);
+    min-width: 64px;
     position: relative;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .navItem:hover {
     color: var(--text-primary);
+    background: var(--bg-secondary);
+}
+
+.navItem:active {
+    transform: scale(0.95);
 }
 
 .navItem.active {
@@ -66,48 +75,78 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-lg);
+    transition: all 0.2s ease;
+}
+
+.navItem.active .iconWrapper {
+    background: var(--primary-100);
+}
+
+[data-theme="dark"] .navItem.active .iconWrapper {
+    background: rgba(99, 102, 241, 0.15);
 }
 
 .icon {
-    transition: transform var(--transition-fast);
+    transition: transform 0.2s ease;
 }
 
 .navItem:active .icon {
-    transform: scale(0.9);
+    transform: scale(0.85);
 }
 
 .navItem.active .icon {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .activeIndicator {
     position: absolute;
-    bottom: -6px;
+    bottom: -4px;
     left: 50%;
     transform: translateX(-50%);
-    width: 4px;
-    height: 4px;
+    width: 5px;
+    height: 5px;
     background: var(--primary-500);
     border-radius: var(--radius-full);
-    animation: scaleIn 0.2s var(--ease-out-back);
+    animation: popIn 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 0 8px var(--primary-500);
 }
 
-@keyframes scaleIn {
-    from {
+@keyframes popIn {
+    0% {
         transform: translateX(-50%) scale(0);
+        opacity: 0;
     }
 
-    to {
+    50% {
+        transform: translateX(-50%) scale(1.3);
+    }
+
+    100% {
         transform: translateX(-50%) scale(1);
+        opacity: 1;
     }
 }
 
 .label {
-    font-size: 10px;
-    font-weight: var(--font-medium);
-    letter-spacing: 0.02em;
+    font-size: 11px;
+    font-weight: var(--font-semibold);
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+}
+
+/* Add badge for notifications */
+.badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 8px;
+    height: 8px;
+    background: var(--error-500);
+    border: 2px solid var(--bg-primary);
+    border-radius: var(--radius-full);
 }
 
 /* Hide nav on desktop */

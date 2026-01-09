@@ -127,9 +127,15 @@ export function AuthProvider({ children }) {
     };
 
     // Role checking utilities
+    // IMPORTANT: Only this email can access admin panel
+    const ADMIN_EMAIL = 'jihalshimray1@gmail.com';
+
     const isAgent = () => state.user?.role === 'agent';
-    const isHost = () => state.user?.role === 'host' || state.user?.role === 'admin';
-    const isAdmin = () => state.user?.role === 'admin';
+    const isHost = () => state.user?.role === 'host' || isAdmin();
+    const isAdmin = () => {
+        // Only the specific admin email can be admin
+        return state.user?.email?.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+    };
     const canCreateRegistration = () => isHost() || isAdmin();
     const canManageUsers = () => isAdmin();
     const canEditOfficialContent = () => isAdmin();
