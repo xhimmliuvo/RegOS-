@@ -1,0 +1,333 @@
+.page {
+    padding: var(--space-4);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.loading,
+.empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-16);
+    color: var(--text-muted);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+}
+
+.backButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--text-secondary);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.backButton:hover {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.headerContent {
+    flex: 1;
+}
+
+.title {
+    font-size: var(--text-xl);
+    font-weight: var(--font-semibold);
+    margin: 0;
+}
+
+.userCount {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+}
+
+/* Toolbar */
+.toolbar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+}
+
+@media (min-width: 640px) {
+    .toolbar {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.searchBar {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 0 var(--space-4);
+    background: var(--surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+}
+
+.searchBar input {
+    flex: 1;
+    height: 44px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: var(--text-sm);
+    color: var(--text-primary);
+}
+
+.searchBar svg {
+    color: var(--text-muted);
+}
+
+.filters {
+    display: flex;
+    gap: var(--space-2);
+}
+
+/* Stats Row */
+.statsRow {
+    display: flex;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+    overflow-x: auto;
+    padding-bottom: var(--space-2);
+}
+
+.statBadge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-3) var(--space-5);
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    min-width: 80px;
+}
+
+.statBadge .statValue {
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: var(--primary-500);
+}
+
+.statBadge .statLabel {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+}
+
+/* User List */
+.userList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.userCard {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.userCard:hover {
+    border-color: var(--primary-200);
+    box-shadow: var(--shadow-sm);
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    flex-shrink: 0;
+}
+
+.userInfo {
+    flex: 1;
+    min-width: 0;
+}
+
+.userInfo h3 {
+    font-size: var(--text-base);
+    font-weight: var(--font-medium);
+    margin: 0 0 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.userInfo p {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.roleBadge {
+    padding: var(--space-1) var(--space-3);
+    font-size: 10px;
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+}
+
+.roleBadge.admin {
+    background: var(--error-100);
+    color: var(--error-600);
+}
+
+.roleBadge.host {
+    background: var(--success-100);
+    color: var(--success-600);
+}
+
+.roleBadge.agent {
+    background: var(--primary-100);
+    color: var(--primary-600);
+}
+
+[data-theme="dark"] .roleBadge.admin {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--error-400);
+}
+
+[data-theme="dark"] .roleBadge.host {
+    background: rgba(34, 197, 94, 0.15);
+    color: var(--success-400);
+}
+
+[data-theme="dark"] .roleBadge.agent {
+    background: rgba(99, 102, 241, 0.15);
+    color: var(--primary-400);
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+}
+
+.pageButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+}
+
+.pageButton:hover:not(:disabled) {
+    background: var(--primary-500);
+    border-color: var(--primary-500);
+    color: white;
+}
+
+.pageButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pageInfo {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+}
+
+/* User Detail Modal */
+.userDetail {
+    text-align: center;
+}
+
+.userDetailHeader {
+    margin-bottom: var(--space-6);
+}
+
+.avatarLarge {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: var(--text-2xl);
+    font-weight: var(--font-bold);
+    margin: 0 auto var(--space-3);
+}
+
+.userDetailHeader h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    margin: 0 0 var(--space-2);
+}
+
+.userDetailInfo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-6);
+}
+
+.infoRow {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+}
+
+.infoRow svg {
+    color: var(--text-muted);
+}
+
+.roleActions {
+    text-align: left;
+}
+
+.roleActions p {
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: var(--text-secondary);
+    margin: 0 0 var(--space-3);
+}
+
+.roleButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}

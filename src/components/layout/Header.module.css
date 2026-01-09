@@ -1,0 +1,282 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    z-index: var(--z-fixed);
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-light);
+}
+
+@supports (backdrop-filter: blur(12px)) {
+    .header {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+}
+
+[data-theme="dark"] .header {
+    background: var(--bg-primary);
+}
+
+@supports (backdrop-filter: blur(12px)) {
+    [data-theme="dark"] .header {
+        background: rgba(15, 13, 26, 0.85);
+    }
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.menuButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--text-primary);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.menuButton:hover {
+    background: var(--bg-secondary);
+}
+
+.desktopOnly {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .desktopOnly {
+        display: flex;
+    }
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    text-decoration: none;
+}
+
+.logoIcon {
+    width: 32px;
+    height: 32px;
+}
+
+.logoIcon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.logoText {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+}
+
+.iconButton {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--text-secondary);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.iconButton:hover {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.notificationDot {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 8px;
+    height: 8px;
+    background: var(--error-500);
+    border-radius: var(--radius-full);
+    border: 2px solid var(--bg-primary);
+}
+
+.userMenuWrapper {
+    position: relative;
+}
+
+.userButton {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-1);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-fast);
+}
+
+.userButton:hover {
+    background: var(--bg-secondary);
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    overflow: hidden;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.chevron {
+    color: var(--text-tertiary);
+    transition: transform var(--transition-fast);
+}
+
+.chevronUp {
+    transform: rotate(180deg);
+}
+
+.userMenu {
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    right: 0;
+    width: 240px;
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    animation: dropdownIn 0.2s var(--ease-out-expo);
+}
+
+@keyframes dropdownIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.userMenuHeader {
+    padding: var(--space-4);
+    background: var(--bg-secondary);
+}
+
+.userName {
+    font-weight: var(--font-semibold);
+    color: var(--text-primary);
+}
+
+.userEmail {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin-top: var(--space-1);
+}
+
+.userRole {
+    display: inline-block;
+    margin-top: var(--space-2);
+    padding: var(--space-1) var(--space-2);
+    font-size: 10px;
+    font-weight: var(--font-semibold);
+    color: var(--primary-600);
+    background: var(--primary-100);
+    border-radius: var(--radius-full);
+    letter-spacing: 0.05em;
+}
+
+[data-theme="dark"] .userRole {
+    background: var(--primary-900);
+    color: var(--primary-300);
+}
+
+.userMenuDivider {
+    height: 1px;
+    background: var(--border-light);
+}
+
+.userMenuItem {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+.userMenuItem:hover {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.logoutItem {
+    color: var(--error-500);
+}
+
+.logoutItem:hover {
+    background: var(--error-50);
+    color: var(--error-600);
+}
+
+[data-theme="dark"] .logoutItem:hover {
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.loginButton {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: var(--text-inverse);
+    background: var(--primary-500);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-fast);
+}
+
+.loginButton:hover {
+    background: var(--primary-600);
+    transform: translateY(-1px);
+}

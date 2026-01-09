@@ -1,0 +1,177 @@
+.page {
+    padding: var(--space-4);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-16);
+    color: var(--text-muted);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+}
+
+.backButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--text-secondary);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.backButton:hover {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.title {
+    flex: 1;
+    font-size: var(--text-xl);
+    font-weight: var(--font-semibold);
+    margin: 0;
+}
+
+/* Filters */
+.filters {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+}
+
+/* Export Bar */
+.exportBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3) var(--space-4);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-4);
+}
+
+.count {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+}
+
+.exportActions {
+    display: flex;
+    gap: var(--space-2);
+}
+
+/* Submissions List */
+.submissionsList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.submissionCard {
+    display: flex;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    transition: all var(--transition-fast);
+}
+
+.submissionCard:hover {
+    border-color: var(--border-default);
+    box-shadow: var(--shadow-sm);
+}
+
+.statusIndicator {
+    width: 4px;
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+}
+
+.submissionContent {
+    flex: 1;
+    min-width: 0;
+}
+
+.submissionHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-2);
+}
+
+.submissionHeader h3 {
+    font-size: var(--text-base);
+    font-weight: var(--font-medium);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.statusBadge {
+    padding: var(--space-1) var(--space-2);
+    font-size: 10px;
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    color: var(--status-color);
+    background: rgba(var(--status-color), 0.1);
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+}
+
+.submissionMeta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-2);
+}
+
+.submissionMeta span {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+}
+
+.hasNotes {
+    color: var(--primary-500) !important;
+}
+
+.formDataPreview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+.formDataPreview span {
+    font-size: var(--text-xs);
+    color: var(--text-secondary);
+    padding: var(--space-1) var(--space-2);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-sm);
+}
+
+/* Empty State */
+.emptyState {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-12);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-xl);
+    color: var(--text-muted);
+}

@@ -1,0 +1,232 @@
+.page {
+    padding: var(--space-4);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-16);
+    color: var(--text-muted);
+}
+
+/* Header */
+.header {
+    margin-bottom: var(--space-6);
+}
+
+.avatarSection {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.avatar {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: var(--text-2xl);
+    font-weight: var(--font-bold);
+    overflow: hidden;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatarEdit {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-500);
+    color: white;
+    border-radius: var(--radius-full);
+    border: 2px solid var(--bg-primary);
+    cursor: pointer;
+}
+
+.userInfo {
+    flex: 1;
+}
+
+.userName {
+    font-size: var(--text-xl);
+    font-weight: var(--font-bold);
+    margin: 0 0 var(--space-1);
+}
+
+.userRole {
+    display: inline-block;
+    padding: var(--space-1) var(--space-2);
+    font-size: 10px;
+    font-weight: var(--font-semibold);
+    color: var(--primary-600);
+    background: var(--primary-100);
+    border-radius: var(--radius-full);
+    letter-spacing: 0.05em;
+}
+
+[data-theme="dark"] .userRole {
+    background: rgba(99, 102, 241, 0.15);
+    color: var(--primary-300);
+}
+
+/* Sections */
+.section {
+    margin-bottom: var(--space-6);
+    padding: var(--space-4);
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+}
+
+.sectionHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-4);
+}
+
+.sectionTitle {
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    margin: 0;
+}
+
+.editButton {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-size: var(--text-sm);
+    color: var(--primary-500);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.editButton:hover {
+    background: var(--primary-50);
+}
+
+/* Form Grid */
+.formGrid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.formField {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.formField label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: var(--text-secondary);
+}
+
+.fieldValue {
+    font-size: var(--text-base);
+    color: var(--text-primary);
+}
+
+.fieldHint {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+}
+
+.formActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border-light);
+}
+
+/* Menu List */
+.menuList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.menuItem {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-fast);
+    text-align: left;
+    width: 100%;
+    color: var(--text-primary);
+}
+
+.menuItem:hover {
+    background: var(--bg-secondary);
+}
+
+.menuItem.danger {
+    color: var(--error-500);
+}
+
+.menuItem.danger:hover {
+    background: var(--error-50);
+}
+
+[data-theme="dark"] .menuItem.danger:hover {
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.menuContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.menuContent span:first-child {
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+}
+
+.menuHint {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+}
+
+.menuItem.danger .menuHint {
+    color: var(--error-400);
+}
+
+/* Account Info */
+.accountInfo {
+    text-align: center;
+    padding: var(--space-4);
+}
+
+.accountInfo p {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin: 0 0 var(--space-1);
+}

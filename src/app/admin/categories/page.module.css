@@ -1,0 +1,142 @@
+.page {
+    padding: var(--space-4);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-16);
+    color: var(--text-muted);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+}
+
+.backButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--text-secondary);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.backButton:hover {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.title {
+    flex: 1;
+    font-size: var(--text-xl);
+    font-weight: var(--font-semibold);
+    margin: 0;
+}
+
+.categoryList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.categoryCard {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+}
+
+.dragHandle {
+    color: var(--text-muted);
+    cursor: grab;
+}
+
+.categoryInfo {
+    flex: 1;
+    min-width: 0;
+}
+
+.categoryInfo h3 {
+    font-size: var(--text-base);
+    font-weight: var(--font-medium);
+    margin: 0 0 2px;
+}
+
+.categoryInfo p {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.adminBadge {
+    display: inline-block;
+    margin-top: var(--space-1);
+    padding: 2px 6px;
+    font-size: 9px;
+    font-weight: var(--font-semibold);
+    text-transform: uppercase;
+    color: var(--error-600);
+    background: var(--error-100);
+    border-radius: var(--radius-sm);
+}
+
+[data-theme="dark"] .adminBadge {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--error-400);
+}
+
+.count {
+    font-size: var(--text-sm);
+    font-weight: var(--font-semibold);
+    color: var(--text-secondary);
+    padding: var(--space-1) var(--space-2);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+}
+
+.actions {
+    display: flex;
+    gap: var(--space-1);
+}
+
+.actionButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: var(--text-muted);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.actionButton:hover {
+    background: var(--bg-secondary);
+    color: var(--primary-500);
+}
+
+.actionButton.danger:hover {
+    background: var(--error-50);
+    color: var(--error-500);
+}
+
+.formFields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}

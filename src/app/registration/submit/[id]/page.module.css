@@ -1,0 +1,252 @@
+.page {
+    min-height: calc(100vh - var(--header-height) - var(--nav-height));
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border-bottom: 1px solid var(--border-light);
+    position: sticky;
+    top: var(--header-height);
+    background: var(--bg-primary);
+    z-index: 10;
+}
+
+.backButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--text-secondary);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.backButton:hover {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.headerContent {
+    min-width: 0;
+}
+
+.title {
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    margin: 0;
+}
+
+.subtitle {
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Form */
+.form {
+    padding: var(--space-6) var(--space-4);
+}
+
+.formFields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+.formActions {
+    margin-top: var(--space-8);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--border-light);
+}
+
+.disclaimer {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    text-align: center;
+    margin: var(--space-4) 0 0;
+}
+
+/* File Field */
+.fileField {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.fileLabel {
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    color: var(--text-primary);
+}
+
+.required {
+    color: var(--error-500);
+    margin-left: var(--space-1);
+}
+
+.fileUpload {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-8) var(--space-4);
+    background: var(--bg-secondary);
+    border: 2px dashed var(--border-default);
+    border-radius: var(--radius-lg);
+    color: var(--text-muted);
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.fileUpload:hover {
+    border-color: var(--primary-400);
+    background: var(--primary-50);
+}
+
+[data-theme="dark"] .fileUpload:hover {
+    background: rgba(99, 102, 241, 0.05);
+}
+
+.fileUpload input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.fileUpload span {
+    font-size: var(--text-sm);
+}
+
+.fileName {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-2) var(--space-3);
+    background: var(--surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+}
+
+.fileName button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    color: var(--text-muted);
+    border-radius: var(--radius-sm);
+}
+
+.fileName button:hover {
+    background: var(--bg-secondary);
+    color: var(--error-500);
+}
+
+.errorMessage {
+    font-size: var(--text-xs);
+    color: var(--error-500);
+}
+
+/* Success State */
+.success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-16) var(--space-4);
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.successIcon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--success-100);
+    color: var(--success-500);
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-6);
+}
+
+[data-theme="dark"] .successIcon {
+    background: rgba(34, 197, 94, 0.15);
+}
+
+.success h2 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-bold);
+    margin: 0 0 var(--space-3);
+}
+
+.success p {
+    color: var(--text-secondary);
+    margin: 0 0 var(--space-2);
+}
+
+.successHint {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+}
+
+.successActions {
+    display: flex;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+}
+
+/* Not Found / Loading */
+.notFound,
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-16) var(--space-4);
+    color: var(--text-muted);
+}
+
+.notFound svg {
+    margin-bottom: var(--space-4);
+}
+
+.notFound h2 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-semibold);
+    color: var(--text-primary);
+    margin: 0 0 var(--space-2);
+}
+
+.notFound p {
+    color: var(--text-secondary);
+    margin: 0 0 var(--space-6);
+}
