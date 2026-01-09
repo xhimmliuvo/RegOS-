@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Search, Filter, X, SlidersHorizontal, Grid, List } from 'lucide-react';
 import Card from '@/components/ui/Card';
@@ -9,7 +9,7 @@ import { Select } from '@/components/ui/Input';
 import { MOCK_REGISTRATIONS, MOCK_CATEGORIES, searchRegistrations } from '@/lib/mockData';
 import styles from './page.module.css';
 
-export default function SearchPage() {
+function SearchContent() {
     const searchParams = useSearchParams();
     const initialQuery = searchParams.get('q') || '';
     const initialCategory = searchParams.get('category') || '';
@@ -225,5 +225,14 @@ export default function SearchPage() {
                 </div>
             )}
         </div>
+    );
+}
+
+// Wrap with Suspense for useSearchParams
+export default function SearchPage() {
+    return (
+        <Suspense fallback={<div className={styles.page}><div style={{ padding: '2rem', textAlign: 'center' }}>Loading...</div></div>}>
+            <SearchContent />
+        </Suspense>
     );
 }

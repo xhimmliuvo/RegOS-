@@ -14,7 +14,7 @@ import {
     DollarSign,
     ArrowUpRight,
     ChevronRight,
-    Handshake
+    Users2
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { MOCK_REGISTRATIONS, MOCK_USERS } from '@/lib/mockData';
@@ -167,7 +167,7 @@ export default function AdminPage() {
 
                     <Link href="/admin/partners" className={styles.menuCard}>
                         <div className={styles.menuIcon}>
-                            <Handshake size={24} />
+                            <Users2 size={24} />
                         </div>
                         <div className={styles.menuContent}>
                             <h3>Partners</h3>

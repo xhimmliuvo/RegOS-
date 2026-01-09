@@ -5,6 +5,28 @@
 
 import { generateId } from './utils';
 
+// Pricing tiers for registration publishing
+export const PRICING = {
+    publish: {
+        '1_day': { label: '1 Day', price: 49, days: 1 },
+        '3_days': { label: '3 Days', price: 99, days: 3 },
+        '5_days': { label: '5 Days', price: 149, days: 5 },
+        '7_days': { label: '7 Days', price: 199, days: 7 },
+        '15_days': { label: '15 Days', price: 349, days: 15 },
+        '30_days': { label: '30 Days', price: 599, days: 30 },
+    }
+};
+
+// Duration labels for display
+export const DURATION_LABELS = {
+    '1_day': '1 Day',
+    '3_days': '3 Days',
+    '5_days': '5 Days',
+    '7_days': '7 Days',
+    '15_days': '15 Days',
+    '30_days': '30 Days',
+};
+
 // Mock Users
 export const MOCK_USERS = [
     {
