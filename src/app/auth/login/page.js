@@ -61,16 +61,19 @@ export default function LoginPage() {
 
         // Simulate API call
         setTimeout(() => {
-            // Demo: If email contains "admin", log in as admin; if "host", as host; otherwise as agent
+            // Admin email check
+            const ADMIN_EMAIL = 'jihalshimray1@gmail.com';
             let role = 'agent';
-            if (formData.email.includes('admin')) {
+
+            if (formData.email.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
                 role = 'admin';
-            } else if (formData.email.includes('host')) {
+            } else if (formData.email.toLowerCase().includes('host')) {
                 role = 'host';
             }
 
             login({
                 email: formData.email,
+                name: formData.email.split('@')[0],
                 role: role,
                 verified: true,
             });
@@ -159,8 +162,8 @@ export default function LoginPage() {
                 </p>
 
                 <p className={styles.demoHint}>
-                    <strong>Demo:</strong> Use any email with "admin" for admin access,
-                    "host" for host access, or any other email for agent access.
+                    <strong>Demo:</strong> Use <code>jihalshimray1@gmail.com</code> for admin,
+                    any email with "host" for host access, or any other email to sign up.
                 </p>
             </div>
         </div>
