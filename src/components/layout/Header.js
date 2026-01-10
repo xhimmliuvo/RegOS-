@@ -86,12 +86,12 @@ export default function Header({ onMenuClick }) {
                         </button>
                     )}
 
-                    {/* Notifications (placeholder) */}
+                    {/* Notifications */}
                     {isAuthenticated && (
-                        <button className={styles.iconButton} aria-label="Notifications">
+                        <Link href="/notifications" className={styles.iconButton} aria-label="Notifications">
                             <Bell size={20} />
                             <span className={styles.notificationDot} />
-                        </button>
+                        </Link>
                     )}
 
                     {/* User Menu */}

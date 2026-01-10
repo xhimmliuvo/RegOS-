@@ -178,14 +178,14 @@ export default function ProfilePage() {
                         <ChevronRight size={18} />
                     </button>
 
-                    <button className={styles.menuItem}>
+                    <Link href="/dashboard/payments" className={styles.menuItem}>
                         <CreditCard size={20} />
                         <div className={styles.menuContent}>
                             <span>Payment History</span>
                             <span className={styles.menuHint}>View past transactions</span>
                         </div>
                         <ChevronRight size={18} />
-                    </button>
+                    </Link>
 
                     <button
                         className={`${styles.menuItem} ${styles.danger}`}
