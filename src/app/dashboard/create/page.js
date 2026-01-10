@@ -26,6 +26,7 @@ import Input, { Textarea, Select, Checkbox } from '@/components/ui/Input';
 import FileUpload from '@/components/ui/FileUpload';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/context/ToastContext';
+import { useRegistrations } from '@/context/RegistrationContext';
 import { MOCK_CATEGORIES, PRICING, DURATION_LABELS } from '@/lib/mockData';
 import { generateId, formatCurrency } from '@/lib/utils';
 import styles from './page.module.css';
@@ -56,6 +57,7 @@ export default function CreateRegistrationPage() {
     const router = useRouter();
     const { user, canCreateRegistration } = useAuth();
     const toast = useToast();
+    const { createRegistration } = useRegistrations();
 
     const [currentStep, setCurrentStep] = useState(0);
     const [registration, setRegistration] = useState({
@@ -153,12 +155,16 @@ export default function CreateRegistrationPage() {
 
         setPublishing(true);
 
-        // Simulate API call
-        setTimeout(() => {
-            setPublishing(false);
-            toast.success('Registration created successfully!');
-            router.push('/dashboard');
-        }, 1500);
+        // Create the registration in context (saves to localStorage)
+        const newReg = createRegistration({
+            ...registration,
+            hostId: user?.id || 'user_1',
+            hostName: user?.name || 'You',
+        });
+
+        // Redirect to payment page
+        router.push(`/payment?amount=${selectedPrice}&purpose=Publish%20Registration&registration=${newReg.id}`);
+        setPublishing(false);
     };
 
     const selectedPrice = PRICING.publish[registration.duration] || 0;

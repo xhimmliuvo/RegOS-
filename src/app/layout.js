@@ -4,6 +4,7 @@ import { AuthProvider } from '@/context/AuthContext';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { ToastProvider } from '@/context/ToastContext';
 import { NetworkProvider, OfflineBanner } from '@/context/NetworkContext';
+import { RegistrationProvider } from '@/context/RegistrationContext';
 import Header from '@/components/layout/Header';
 import MobileNav from '@/components/layout/MobileNav';
 import TermsModal from '@/components/ui/TermsModal';
@@ -67,16 +68,18 @@ export default function RootLayout({ children }) {
                     <ThemeProvider>
                         <AuthProvider>
                             <ToastProvider>
-                                <OfflineBanner />
-                                <div className="app-shell">
-                                    <Header />
-                                    <main className="app-content">
-                                        {children}
-                                    </main>
-                                    <MobileNav />
-                                    <TermsModal />
-                                    <InstallPrompt />
-                                </div>
+                                <RegistrationProvider>
+                                    <OfflineBanner />
+                                    <div className="app-shell">
+                                        <Header />
+                                        <main className="app-content">
+                                            {children}
+                                        </main>
+                                        <MobileNav />
+                                        <TermsModal />
+                                        <InstallPrompt />
+                                    </div>
+                                </RegistrationProvider>
                             </ToastProvider>
                         </AuthProvider>
                     </ThemeProvider>

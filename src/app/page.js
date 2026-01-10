@@ -23,7 +23,8 @@ import {
 import Button from '@/components/ui/Button';
 import Card, { CardSkeleton } from '@/components/ui/Card';
 import { useAuth } from '@/context/AuthContext';
-import { MOCK_REGISTRATIONS, MOCK_CATEGORIES, getFeaturedRegistrations, getActiveRegistrations } from '@/lib/mockData';
+import { useRegistrations } from '@/context/RegistrationContext';
+import { MOCK_CATEGORIES } from '@/lib/mockData';
 import { getUserCount, getPartners } from '@/lib/supabase';
 import styles from './page.module.css';
 
@@ -41,6 +42,7 @@ const categoryIcons = {
 
 export default function HomePage() {
     const { isAuthenticated, canCreateRegistration } = useAuth();
+    const { registrations, loaded, getFeaturedRegistrations, getActiveRegistrations } = useRegistrations();
     const [searchQuery, setSearchQuery] = useState('');
     const [userCount, setUserCount] = useState(5000);
     const [partners, setPartners] = useState([]);
@@ -56,8 +58,8 @@ export default function HomePage() {
         });
     }, []);
 
-    const featuredRegistrations = getFeaturedRegistrations();
-    const recentRegistrations = getActiveRegistrations().slice(0, 6);
+    const featuredRegistrations = loaded ? getFeaturedRegistrations() : [];
+    const recentRegistrations = loaded ? getActiveRegistrations().slice(0, 6) : [];
     const publicCategories = MOCK_CATEGORIES.filter(c => !c.adminOnly);
 
     return (

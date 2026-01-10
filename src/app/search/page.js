@@ -6,11 +6,13 @@ import { Search, Filter, X, SlidersHorizontal, Grid, List } from 'lucide-react';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import { Select } from '@/components/ui/Input';
-import { MOCK_REGISTRATIONS, MOCK_CATEGORIES, searchRegistrations } from '@/lib/mockData';
+import { useRegistrations } from '@/context/RegistrationContext';
+import { MOCK_CATEGORIES } from '@/lib/mockData';
 import styles from './page.module.css';
 
 function SearchContent() {
     const searchParams = useSearchParams();
+    const { searchRegistrations, loaded } = useRegistrations();
     const initialQuery = searchParams.get('q') || '';
     const initialCategory = searchParams.get('category') || '';
 
@@ -24,7 +26,8 @@ function SearchContent() {
 
     // Filter and sort registrations
     const filteredRegistrations = useMemo(() => {
-        let results = searchRegistrations(query);
+        if (!loaded) return [];
+        let results = searchRegistrations(query, category || null);
 
         // Filter by category
         if (category) {
