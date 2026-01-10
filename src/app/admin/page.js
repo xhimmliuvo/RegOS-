@@ -143,6 +143,17 @@ export default function AdminPage() {
                         <ChevronRight size={18} />
                     </Link>
 
+                    <Link href="/admin/pricing" className={styles.menuCard}>
+                        <div className={styles.menuIcon}>
+                            <DollarSign size={24} />
+                        </div>
+                        <div className={styles.menuContent}>
+                            <h3>Pricing</h3>
+                            <p>Set registration and upgrade prices</p>
+                        </div>
+                        <ChevronRight size={18} />
+                    </Link>
+
                     <Link href="/admin/payments" className={styles.menuCard}>
                         <div className={styles.menuIcon}>
                             <CreditCard size={24} />
