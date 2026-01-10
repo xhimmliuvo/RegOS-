@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import {
     Copy,
@@ -20,15 +20,15 @@ import styles from './page.module.css';
 
 // Payment configuration
 const PAYMENT_CONFIG = {
-    upiId: '8787665349@ybl', // Update this with actual UPI ID
+    upiId: '8787665349@ybl',
     whatsappNumber: '918787665349',
     merchantName: 'RegOS Platform',
 };
 
-export default function PaymentPage() {
+function PaymentContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const { user, isAuthenticated } = useAuth();
+    const { user } = useAuth();
     const toast = useToast();
 
     const amount = searchParams.get('amount') || '99';
@@ -64,7 +64,6 @@ export default function PaymentPage() {
     };
 
     const openUPIApp = () => {
-        // Deep link to UPI apps
         const upiLink = `upi://pay?pa=${PAYMENT_CONFIG.upiId}&pn=${encodeURIComponent(PAYMENT_CONFIG.merchantName)}&am=${amount}&cu=INR&tn=${encodeURIComponent(purpose)}`;
         window.location.href = upiLink;
     };
@@ -175,5 +174,14 @@ export default function PaymentPage() {
                 <span>Activation within 5-30 minutes after confirmation</span>
             </div>
         </div>
+    );
+}
+
+// Wrap with Suspense for useSearchParams
+export default function PaymentPage() {
+    return (
+        <Suspense fallback={<div style={{ padding: '2rem', textAlign: 'center' }}>Loading...</div>}>
+            <PaymentContent />
+        </Suspense>
     );
 }

@@ -14,16 +14,6 @@ export const metadata = {
     description: 'Mobile-first Registration & Event Hosting Platform. Create, manage, and monetize registrations, events, and appointments.',
     keywords: 'registration, events, appointments, platform, forms, hosting',
     manifest: '/manifest.json',
-    themeColor: [
-        { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-        { media: '(prefers-color-scheme: dark)', color: '#0f0d1a' },
-    ],
-    viewport: {
-        width: 'device-width',
-        initialScale: 1,
-        maximumScale: 1,
-        viewportFit: 'cover',
-    },
     appleWebApp: {
         capable: true,
         statusBarStyle: 'default',
@@ -34,6 +24,17 @@ export const metadata = {
         description: 'Mobile-first Registration & Event Hosting Platform',
         type: 'website',
     },
+};
+
+export const viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    viewportFit: 'cover',
+    themeColor: [
+        { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+        { media: '(prefers-color-scheme: dark)', color: '#0f0d1a' },
+    ],
 };
 
 export default function RootLayout({ children }) {

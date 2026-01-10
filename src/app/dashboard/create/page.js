@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import Input, { Textarea, Select, Checkbox } from '@/components/ui/Input';
+import FileUpload from '@/components/ui/FileUpload';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/context/ToastContext';
 import { MOCK_CATEGORIES, PRICING, DURATION_LABELS } from '@/lib/mockData';
