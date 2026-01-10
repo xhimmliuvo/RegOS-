@@ -169,14 +169,14 @@ export default function ProfilePage() {
                 <h2 className={styles.sectionTitle}>Account</h2>
 
                 <div className={styles.menuList}>
-                    <button className={styles.menuItem}>
+                    <Link href="/dashboard/security" className={styles.menuItem}>
                         <Shield size={20} />
                         <div className={styles.menuContent}>
                             <span>Security</span>
                             <span className={styles.menuHint}>Password, 2FA</span>
                         </div>
                         <ChevronRight size={18} />
-                    </button>
+                    </Link>
 
                     <Link href="/dashboard/payments" className={styles.menuItem}>
                         <CreditCard size={20} />
