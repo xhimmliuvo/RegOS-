@@ -1,41 +1,100 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect } from 'react';
-import { MOCK_REGISTRATIONS } from '@/lib/mockData';
 import { generateId } from '@/lib/utils';
 
 const RegistrationContext = createContext(null);
 
 const STORAGE_KEY = 'regos_registrations';
 
+// Default mock data - only used if no stored data exists
+const getDefaultRegistrations = () => [
+    {
+        id: 'reg_demo_1',
+        title: 'Tech Conference 2026',
+        description: 'Annual technology conference featuring the latest innovations.',
+        category: 'events',
+        visibility: 'public',
+        duration: '30days',
+        hostId: 'demo_host',
+        hostName: 'Tech Events Co',
+        createdAt: new Date().toISOString(),
+        startDate: new Date().toISOString(),
+        endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+        status: 'active',
+        viewCount: 156,
+        submissionCount: 42,
+        featured: true,
+        verified: true,
+        formSchema: [
+            { id: 'f1', type: 'text', label: 'Full Name', required: true },
+            { id: 'f2', type: 'email', label: 'Email', required: true },
+            { id: 'f3', type: 'phone', label: 'Phone', required: false },
+        ],
+    },
+    {
+        id: 'reg_demo_2',
+        title: 'Startup Registration',
+        description: 'Register your startup for incubation program.',
+        category: 'business',
+        visibility: 'public',
+        duration: '14days',
+        hostId: 'demo_host_2',
+        hostName: 'Startup Hub',
+        createdAt: new Date().toISOString(),
+        startDate: new Date().toISOString(),
+        endDate: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
+        status: 'active',
+        viewCount: 89,
+        submissionCount: 23,
+        featured: false,
+        verified: true,
+        formSchema: [
+            { id: 'f1', type: 'text', label: 'Startup Name', required: true },
+            { id: 'f2', type: 'email', label: 'Contact Email', required: true },
+        ],
+    },
+];
+
 export function RegistrationProvider({ children }) {
     const [registrations, setRegistrations] = useState([]);
     const [loaded, setLoaded] = useState(false);
 
-    // Load registrations from localStorage on mount
+    // Load registrations from localStorage on mount (client-side only)
     useEffect(() => {
-        const stored = localStorage.getItem(STORAGE_KEY);
-        if (stored) {
-            try {
+        if (typeof window === 'undefined') return;
+
+        try {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored) {
                 const parsed = JSON.parse(stored);
-                setRegistrations(parsed);
-            } catch (e) {
-                // If parse fails, use mock data
-                setRegistrations(MOCK_REGISTRATIONS);
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(MOCK_REGISTRATIONS));
+                if (Array.isArray(parsed) && parsed.length > 0) {
+                    setRegistrations(parsed);
+                } else {
+                    const defaults = getDefaultRegistrations();
+                    setRegistrations(defaults);
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(defaults));
+                }
+            } else {
+                const defaults = getDefaultRegistrations();
+                setRegistrations(defaults);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(defaults));
             }
-        } else {
-            // First time - seed with mock data
-            setRegistrations(MOCK_REGISTRATIONS);
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(MOCK_REGISTRATIONS));
+        } catch (e) {
+            console.error('Error loading registrations:', e);
+            setRegistrations(getDefaultRegistrations());
         }
         setLoaded(true);
     }, []);
 
     // Save to localStorage whenever registrations change
     useEffect(() => {
-        if (loaded) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(registrations));
+        if (loaded && typeof window !== 'undefined') {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(registrations));
+            } catch (e) {
+                console.error('Error saving registrations:', e);
+            }
         }
     }, [registrations, loaded]);
 
@@ -58,7 +117,7 @@ export function RegistrationProvider({ children }) {
             createdAt: now.toISOString(),
             startDate: now.toISOString(),
             endDate: endDate.toISOString(),
-            status: 'active',
+            status: 'pending', // Pending until admin confirms payment
             viewCount: 0,
             submissionCount: 0,
             featured: false,
@@ -91,6 +150,10 @@ export function RegistrationProvider({ children }) {
         return registrations.filter(reg => reg.status === 'active');
     };
 
+    const getPendingRegistrations = () => {
+        return registrations.filter(reg => reg.status === 'pending');
+    };
+
     const getFeaturedRegistrations = () => {
         return registrations.filter(reg => reg.featured && reg.status === 'active');
     };
@@ -112,6 +175,14 @@ export function RegistrationProvider({ children }) {
         }
 
         return results;
+    };
+
+    const approveRegistration = (id) => {
+        updateRegistration(id, { status: 'active', verified: true });
+    };
+
+    const rejectRegistration = (id) => {
+        updateRegistration(id, { status: 'rejected' });
     };
 
     const addSubmission = (registrationId, submissionData) => {
@@ -144,6 +215,11 @@ export function RegistrationProvider({ children }) {
         );
     };
 
+    // Don't render children until loaded to prevent hydration mismatch
+    if (!loaded) {
+        return null;
+    }
+
     return (
         <RegistrationContext.Provider value={{
             registrations,
@@ -154,8 +230,11 @@ export function RegistrationProvider({ children }) {
             getRegistrationById,
             getRegistrationsByHost,
             getActiveRegistrations,
+            getPendingRegistrations,
             getFeaturedRegistrations,
             searchRegistrations,
+            approveRegistration,
+            rejectRegistration,
             addSubmission,
             incrementView,
         }}>
