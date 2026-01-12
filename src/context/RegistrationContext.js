@@ -7,54 +7,8 @@ const RegistrationContext = createContext(null);
 
 const STORAGE_KEY = 'regos_registrations';
 
-// Default mock data - only used if no stored data exists
-const getDefaultRegistrations = () => [
-    {
-        id: 'reg_demo_1',
-        title: 'Tech Conference 2026',
-        description: 'Annual technology conference featuring the latest innovations.',
-        category: 'events',
-        visibility: 'public',
-        duration: '30days',
-        hostId: 'demo_host',
-        hostName: 'Tech Events Co',
-        createdAt: new Date().toISOString(),
-        startDate: new Date().toISOString(),
-        endDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
-        status: 'active',
-        viewCount: 156,
-        submissionCount: 42,
-        featured: true,
-        verified: true,
-        formSchema: [
-            { id: 'f1', type: 'text', label: 'Full Name', required: true },
-            { id: 'f2', type: 'email', label: 'Email', required: true },
-            { id: 'f3', type: 'phone', label: 'Phone', required: false },
-        ],
-    },
-    {
-        id: 'reg_demo_2',
-        title: 'Startup Registration',
-        description: 'Register your startup for incubation program.',
-        category: 'business',
-        visibility: 'public',
-        duration: '14days',
-        hostId: 'demo_host_2',
-        hostName: 'Startup Hub',
-        createdAt: new Date().toISOString(),
-        startDate: new Date().toISOString(),
-        endDate: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
-        status: 'active',
-        viewCount: 89,
-        submissionCount: 23,
-        featured: false,
-        verified: true,
-        formSchema: [
-            { id: 'f1', type: 'text', label: 'Startup Name', required: true },
-            { id: 'f2', type: 'email', label: 'Contact Email', required: true },
-        ],
-    },
-];
+// No default data - start with empty registrations
+const getDefaultRegistrations = () => [];
 
 export function RegistrationProvider({ children }) {
     const [registrations, setRegistrations] = useState([]);
